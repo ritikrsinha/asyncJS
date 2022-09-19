@@ -3,7 +3,7 @@ const posts = [
     {title: 'Post Two', body: 'This is post two', createdAt: new Date().getTime()}
 ];
 
-
+var intervalId;
 function getPosts(){
     clearInterval(intervalId);
     intervalId = setInterval(() => {
@@ -18,7 +18,7 @@ function getPosts(){
     function createPosts(post){
         return new Promise((resolve, reject) => {
             setTimeout(()=>{
-            posts.push(post);
+            posts.push({...post, createdAt: new Date().getTime()});
 
             const error = false;
             if(!error){
@@ -31,7 +31,7 @@ function getPosts(){
 
     }
 
-  function deletePosts(post,cre){
+  function deletePosts(){
     return new Promise((resolve, reject) => {
         setTimeout(() =>{
         if(posts.value === null){
@@ -60,10 +60,27 @@ function getPosts(){
    }).catch(err => console.log(err))
 
 
-// Promise.all
-// const promise1 = Promise.resolve('Hello World');
-// const promise2 = 10;
-// const promise3 = new Promise((resolve, reject) =>
-// setTimeout(resolve, 2000, 'Goodbye'));
-
-// Promise.all([promise1,promise2,promise3]).then(values => console.log(values));
+    const user = { username: 'ritik', lastactivitytime: '17th of sept'};
+    
+    function updatelastactivitytime(post){
+        return new Promise((resolve, reject) => {
+            setTimeout(() =>{
+                user.lastactivitytime = new Date().getTime;
+                if(posts !== 0){
+                resolve(user.lastactivitytime) ;               
+                }else{
+                    reject('Array is empty now'); 
+                }
+            },1000);
+        })
+      }
+    
+    
+     createPosts({title: 'Post Four', body: 'This is post four'}, getPosts)
+     function userupdatepost(posts){
+        Promise.all([createPosts, updatelastactivitytime])
+        .then(([updatelastactivitytimeresolves]) =>{
+            console.log(updatelastactivitytimeresolves)
+        })
+        .catch(err => console.log(err))
+      };
